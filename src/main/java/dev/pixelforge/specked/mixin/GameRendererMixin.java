@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class GameRendererMixin {
 
     @ModifyVariable(method = "getFov", at = @At("RETURN"), ordinal = 0)
-    private double modifyFov(double fov) {
-        return ZoomModule.getTargetFov((float) fov);
+    private float modifyFov(float fov) {
+        return ZoomModule.getTargetFov(fov);
     }
 }
