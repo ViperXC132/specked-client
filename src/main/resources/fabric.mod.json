@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "specked",
+  "version": "1.0.0",
+  "name": "Specked Client",
+  "description": "All-in-one Fabric client mod by PixelForge Studios",
+  "authors": ["PixelForge Studios", "ViperXC132"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/specked/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.pixelforge.specked.SpeckedClient"]
+  },
+  "mixins": ["specked.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "fabric-api": "*",
+    "minecraft": "1.21.11"
+  }
+}
