@@ -2,8 +2,9 @@ package dev.pixelforge.specked.mixin;
 
 import dev.pixelforge.specked.SpeckedClient;
 import dev.pixelforge.specked.modules.visual.CrosshairModule;
-import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class InGameHudMixin {
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
-    private void cancelDefaultCrosshair(DrawContext ctx, float tickDelta, CallbackInfo ci) {
+    private void cancelDefaultCrosshair(DrawContext ctx, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (SpeckedClient.moduleManager == null) return;
         var mods = SpeckedClient.moduleManager.getAll();
         for (var m : mods) {
@@ -25,9 +26,9 @@ public class InGameHudMixin {
     }
 
     @Inject(method = "render", at = @At("TAIL"))
-    private void onRender(DrawContext ctx, float tickDelta, CallbackInfo ci) {
+    private void onRender(DrawContext ctx, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (SpeckedClient.moduleManager != null) {
-            SpeckedClient.moduleManager.onHudRender(ctx, tickDelta);
+            SpeckedClient.moduleManager.onHudRender(ctx, tickCounter.getTickProgress(false));
         }
     }
 }
