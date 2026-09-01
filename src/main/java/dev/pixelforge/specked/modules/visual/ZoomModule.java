@@ -1,5 +1,6 @@
 package dev.pixelforge.specked.modules.visual;
 
+import dev.pixelforge.specked.SpeckedClient;
 import dev.pixelforge.specked.modules.Module;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
@@ -22,7 +23,7 @@ public class ZoomModule extends Module {
             "key.specked.zoom",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_C,
-            "category.specked"
+            SpeckedClient.KEY_CATEGORY
         ));
     }
 
