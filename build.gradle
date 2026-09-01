@@ -4,8 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // 1.7.14 is not published; use the published 1.7.15 patch
-        classpath "net.fabricmc:fabric-loom:1.7.15"
+        // Fabric Loom 1.13.6 is a published release compatible with the 1.21.11 toolchain.
+        classpath "net.fabricmc:fabric-loom:1.13.6"
     }
 }
 
