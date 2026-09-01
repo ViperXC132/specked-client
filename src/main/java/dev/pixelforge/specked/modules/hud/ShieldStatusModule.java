@@ -2,6 +2,7 @@ package dev.pixelforge.specked.modules.hud;
 
 import dev.pixelforge.specked.modules.Module;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 public class ShieldStatusModule extends Module {
@@ -15,15 +16,15 @@ public class ShieldStatusModule extends Module {
     @Override
     public void onHudRender(DrawContext ctx, float tickDelta) {
         if (mc.player == null) return;
-        boolean hasShield = mc.player.getMainHandStack().getItem() == Items.SHIELD
-            || mc.player.getOffHandStack().getItem() == Items.SHIELD;
-        if (!hasShield) return;
+        ItemStack shield = mc.player.getMainHandStack().getItem() == Items.SHIELD
+            ? mc.player.getMainHandStack() : mc.player.getOffHandStack();
+        if (shield.getItem() != Items.SHIELD) return;
 
         int x = ((Double) settings.get(0).getValue()).intValue();
         int y = ((Double) settings.get(1).getValue()).intValue();
 
         boolean blocking = mc.player.isBlocking();
-        int cd = mc.player.getItemCooldownManager().getCooldownProgress(Items.SHIELD, tickDelta) > 0 ? 1 : 0;
+        int cd = mc.player.getItemCooldownManager().getCooldownProgress(shield, tickDelta) > 0 ? 1 : 0;
 
         String status;
         int color;
@@ -40,6 +41,6 @@ public class ShieldStatusModule extends Module {
 
         int w = mc.textRenderer.getWidth(status);
         ctx.fill(x - 2, y - 2, x + w + 2, y + 10, 0x88000000);
-        ctx.drawString(mc.textRenderer, status, x, y, color);
+        ctx.drawTextWithShadow(mc.textRenderer, status, x, y, color);
     }
 }
