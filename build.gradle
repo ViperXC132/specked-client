@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // fabric-loom 1.7.14 is not published; use the available 1.7.15 patch
+        // 1.7.14 is not published; use the published 1.7.15 patch
         classpath "net.fabricmc:fabric-loom:1.7.15"
     }
 }
@@ -21,6 +21,7 @@ base {
 
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
+    mavenCentral()
 }
 
 dependencies {
