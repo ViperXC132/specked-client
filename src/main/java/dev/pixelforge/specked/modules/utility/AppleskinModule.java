@@ -2,9 +2,9 @@ package dev.pixelforge.specked.modules.utility;
 
 import dev.pixelforge.specked.modules.Module;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.ItemStack;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.item.ItemStack;
 
 public class AppleskinModule extends Module {
 
@@ -30,15 +30,15 @@ public class AppleskinModule extends Module {
         int y = sh - 39;
 
         if (showHunger) {
-            String h = "+" + food.nutrition() + " \uD83C\uDF56";
+            String h = "+" + food.nutrition() + " 🍖";
             ctx.fill(x - 2, y - 2, x + mc.textRenderer.getWidth(h) + 2, y + 10, 0x88000000);
-            ctx.drawString(mc.textRenderer, h, x, y, 0xFFFFCC44);
+            ctx.drawTextWithShadow(mc.textRenderer, h, x, y, 0xFFFFCC44);
             y += 12;
         }
         if (showSat) {
             String s = "+" + String.format("%.1f", food.saturation()) + " sat";
             ctx.fill(x - 2, y - 2, x + mc.textRenderer.getWidth(s) + 2, y + 10, 0x88000000);
-            ctx.drawString(mc.textRenderer, s, x, y, 0xFFFF9944);
+            ctx.drawTextWithShadow(mc.textRenderer, s, x, y, 0xFFFF9944);
         }
     }
 }
